@@ -1,0 +1,13 @@
+db-connection-project/
+│
+├── src/
+│   ├── main.py
+│   ├── mysql_connection.py
+│   ├── postgres_connection.py
+│   ├── crud_operations.py
+│   └── models.py
+│
+├── .env
+├── requirements.txt
+├── docker-compose.yml
+└── README.md
