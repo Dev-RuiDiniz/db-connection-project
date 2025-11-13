@@ -28,7 +28,7 @@ Criar uma base sólida de integração entre **Python e bancos de dados relacion
 
 ## 🧱 Estrutura do Projeto
 
-"""db-connection-project/
+db-connection-project/
 │
 ├── src/
 │ ├── main.py
@@ -42,10 +42,7 @@ Criar uma base sólida de integração entre **Python e bancos de dados relacion
 ├── .gitignore
 ├── docker-compose.yml
 ├── requirements.txt
-└── README.md"""
-
-yaml
-Copiar código
+└── README.md
 
 ---
 
@@ -76,9 +73,10 @@ docker ps
 O MySQL estará na porta 3306
 O PostgreSQL estará na porta 5432
 
-🔐 Configuração do .env
-bash
-Copiar código
+---
+
+##🔐 Configuração do .env
+
 # Local
 MYSQL_LOCAL_URL=mysql+mysqlconnector://root:root@localhost:3306/testdb
 POSTGRES_LOCAL_URL=postgresql+psycopg2://postgres:postgres@localhost:5432/testdb
@@ -92,7 +90,9 @@ MYSQL_GCP_URL=mysql+mysqlconnector://admin:senha@gcp-endpoint:3306/testdb
 POSTGRES_GCP_URL=postgresql+psycopg2://admin:senha@gcp-endpoint:5432/testdb
 ⚠️ O arquivo .env não deve ser versionado — ele está incluído no .gitignore.
 
-###🧩 Criação de Tabelas ORM
+---
+
+##🧩 Criação de Tabelas ORM
 Execute:
 
 bash
@@ -100,7 +100,9 @@ Copiar código
 python src/create_tables.py
 Isso cria as tabelas users e products conforme o modelo ORM definido em models.py.
 
-###💾 Execução Principal
+---
+
+##💾 Execução Principal
 Rode o script principal:
 
 bash
@@ -116,9 +118,10 @@ Inserir usuários e produtos de exemplo;
 
 Exibir os dados no terminal.
 
-###🧠 Estrutura ORM (src/models.py)
-python
-Copiar código
+---
+
+##🧠 Estrutura ORM (src/models.py)
+
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
@@ -135,7 +138,7 @@ class Product(Base):
 
 ---
 
-###🌩️ Conexão com AWS RDS e Google Cloud SQL
+##🌩️ Conexão com AWS RDS e Google Cloud SQL
 1️⃣ Crie uma instância gratuita:
 AWS RDS: https://aws.amazon.com/rds/free/
 
@@ -157,9 +160,10 @@ bash
 Copiar código
 python src/main.py
 
-###🧰 Instalação de Dependências
-bash
-Copiar código
+---
+
+##🧰 Instalação de Dependências
+
 pip install -r requirements.txt
 requirements.txt
 php
@@ -169,14 +173,18 @@ python-dotenv
 psycopg2-binary
 mysql-connector-python
 
-###🔒 Boas Práticas Aplicadas
+---
+
+##🔒 Boas Práticas Aplicadas
 ✅ Separação clara entre lógica, modelos e conexão
 ✅ Variáveis sensíveis isoladas em .env
 ✅ ORM SQLAlchemy (sem SQL hardcoded)
 ✅ Compatibilidade com múltiplos bancos
 ✅ Código versionável e modular
 
-###💼 Valor para o Portfólio
+---
+
+##💼 Valor para o Portfólio
 Este projeto demonstra competências práticas em:
 
 Integração de sistemas Python ↔ Bancos de dados relacionais
@@ -193,13 +201,15 @@ Ideal para vagas de Desenvolvedor Backend, Analista de Dados e Engenheiro de Sof
 
 ---
 
-### 👨‍💻 Autor
+## 👨‍💻 Autor
 Rui Francisco de Paula Inácio Diniz
 📍 Taubaté - SP
 📧 rui.pdiniz@gmail.com
 💼 LinkedIn
 💻 GitHub
 
-###🧾 Licença
+---
+
+##🧾 Licença
 Este projeto é de uso livre para fins educacionais e demonstrações técnicas.
 © 2025 — Desenvolvido por Rui Diniz.
