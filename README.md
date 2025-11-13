@@ -7,7 +7,7 @@
 ![GCP Cloud SQL](https://img.shields.io/badge/Cloud-GCP_Cloud_SQL-blue?logo=googlecloud)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-Projeto prático que demonstra como conectar aplicações **Python** a bancos de dados **MySQL** e **PostgreSQL**, tanto **localmente com Docker** quanto **remotamente via AWS RDS e Google Cloud SQL**.  
+Projeto prático que demonstra como conectar aplicações **Python** a bancos de dados **MySQL** e **PostgreSQL**, tanto **localmente com Docker** quanto **remotamente via AWS RDS e Google Cloud SQL**.
 
 Desenvolvido por **[Rui Diniz](https://github.com/Dev-RuiDiniz)**, este projeto reforça conhecimentos em integração de sistemas, ORM, segurança de credenciais e boas práticas de arquitetura backend.
 
@@ -15,43 +15,44 @@ Desenvolvido por **[Rui Diniz](https://github.com/Dev-RuiDiniz)**, este projeto 
 
 ## 📊 Objetivo
 
-Criar uma base sólida de integração entre **Python e bancos de dados relacionais**, aplicando ORM, persistência de dados e uso seguro de variáveis de ambiente.  
+Criar uma base sólida de integração entre **Python e bancos de dados relacionais**, aplicando ORM, persistência de dados e uso seguro de variáveis de ambiente.
 
-### 🎯 Metas Técnicas:
-- Criar bancos de dados locais com **Docker Compose**.  
-- Conectar Python a **MySQL** e **PostgreSQL** (local e remoto).  
-- Executar operações **CRUD** com SQLAlchemy.  
-- Armazenar credenciais com segurança via **.env**.  
-- Simular ambiente profissional com **AWS** e **GCP**.
+### 🎯 Metas Técnicas
+
+- Criar bancos de dados locais com **Docker Compose**
+- Conectar Python a **MySQL** e **PostgreSQL** (local e remoto)
+- Executar operações **CRUD** com SQLAlchemy
+- Armazenar credenciais com segurança via **.env**
+- Simular ambiente profissional com **AWS** e **GCP**
 
 ---
 
 ## 🧱 Estrutura do Projeto
 
+```
 db-connection-project/
-│
 ├── src/
-│ ├── main.py
-│ ├── mysql_connection.py
-│ ├── postgres_connection.py
-│ ├── crud_operations.py
-│ ├── models.py
-│ └── create_tables.py
-│
+│   ├── main.py
+│   ├── mysql_connection.py
+│   ├── postgres_connection.py
+│   ├── crud_operations.py
+│   ├── models.py
+│   └── create_tables.py
 ├── .env
 ├── .gitignore
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
 ## ⚙️ Tecnologias Utilizadas
 
 | Categoria | Ferramentas |
-|------------|--------------|
+|-----------|---|
 | **Linguagem** | Python 3.11+ |
-| **Bancos** | MySQL 8, PostgreSQL 15 |
+| **Bancos de Dados** | MySQL 8, PostgreSQL 15 |
 | **ORM / Driver** | SQLAlchemy, psycopg2, mysql-connector-python |
 | **Ambiente Local** | Docker & Docker Compose |
 | **Cloud Providers** | AWS RDS, Google Cloud SQL |
@@ -62,21 +63,26 @@ db-connection-project/
 
 ## 🐳 Configuração Local com Docker
 
-## 1️⃣ Suba os containers MySQL e PostgreSQL:
+### 1. Inicie os containers MySQL e PostgreSQL
 
+```bash
 docker compose up -d
+```
+
 Verifique se estão ativos:
 
-bash
-Copiar código
+```bash
 docker ps
-O MySQL estará na porta 3306
-O PostgreSQL estará na porta 5432
+```
+
+- MySQL estará na porta **3306**
+- PostgreSQL estará na porta **5432**
 
 ---
 
-##🔐 Configuração do .env
+## 🔐 Configuração do .env
 
+```env
 # Local
 MYSQL_LOCAL_URL=mysql+mysqlconnector://root:root@localhost:3306/testdb
 POSTGRES_LOCAL_URL=postgresql+psycopg2://postgres:postgres@localhost:5432/testdb
@@ -88,40 +94,44 @@ POSTGRES_AWS_URL=postgresql+psycopg2://admin:senha@rds-endpoint.amazonaws.com:54
 # GCP Cloud SQL
 MYSQL_GCP_URL=mysql+mysqlconnector://admin:senha@gcp-endpoint:3306/testdb
 POSTGRES_GCP_URL=postgresql+psycopg2://admin:senha@gcp-endpoint:5432/testdb
-⚠️ O arquivo .env não deve ser versionado — ele está incluído no .gitignore.
+```
+
+⚠️ **Nota**: O arquivo `.env` não deve ser versionado — está incluído no `.gitignore`
 
 ---
 
-##🧩 Criação de Tabelas ORM
-Execute:
+## 🧩 Criação de Tabelas ORM
 
-bash
-Copiar código
+Execute o script de criação:
+
+```bash
 python src/create_tables.py
-Isso cria as tabelas users e products conforme o modelo ORM definido em models.py.
+```
+
+Isso cria as tabelas `users` e `products` conforme o modelo ORM definido em `models.py`.
 
 ---
 
-##💾 Execução Principal
-Rode o script principal:
+## 💾 Execução Principal
 
-bash
-Copiar código
+Execute o script principal:
+
+```bash
 python src/main.py
+```
+
 Ele irá:
 
-Conectar ao banco PostgreSQL (padrão);
-
-Criar tabelas se não existirem;
-
-Inserir usuários e produtos de exemplo;
-
-Exibir os dados no terminal.
+- Conectar ao banco PostgreSQL (padrão)
+- Criar tabelas se não existirem
+- Inserir usuários e produtos de exemplo
+- Exibir os dados no terminal
 
 ---
 
-##🧠 Estrutura ORM (src/models.py)
+## 🧠 Estrutura ORM (src/models.py)
 
+```python
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
@@ -135,81 +145,92 @@ class Product(Base):
     name = Column(String(100))
     price = Column(Integer)
     user_id = Column(Integer, ForeignKey("users.id"))
+```
 
 ---
 
-##🌩️ Conexão com AWS RDS e Google Cloud SQL
-1️⃣ Crie uma instância gratuita:
-AWS RDS: https://aws.amazon.com/rds/free/
+## 🌩️ Conexão com AWS RDS e Google Cloud SQL
 
-GCP Cloud SQL: https://cloud.google.com/sql
+### 1. Crie uma instância gratuita
 
-2️⃣ Libere seu IP local
-AWS: Security Group
+- [AWS RDS](https://aws.amazon.com/rds/free/)
+- [GCP Cloud SQL](https://cloud.google.com/sql)
 
-GCP: Authorized Networks
+### 2. Libere seu IP local
 
-3️⃣ Atualize o .env
-Substitua:
+- **AWS**: Adicione regra no Security Group
+- **GCP**: Adicione IP em Authorized Networks
 
-nginx
-Copiar código
+### 3. Atualize o .env
+
+Substitua a URL local pela URL em nuvem:
+
+```env
 POSTGRES_LOCAL_URL → POSTGRES_AWS_URL
-4️⃣ Teste a conexão
-bash
-Copiar código
+```
+
+### 4. Teste a conexão
+
+```bash
 python src/main.py
+```
 
 ---
 
-##🧰 Instalação de Dependências
+## 🧰 Instalação de Dependências
 
+```bash
 pip install -r requirements.txt
-requirements.txt
-php
-Copiar código
+```
+
+### requirements.txt
+
+```
 SQLAlchemy
 python-dotenv
 psycopg2-binary
 mysql-connector-python
+```
 
 ---
 
-##🔒 Boas Práticas Aplicadas
-✅ Separação clara entre lógica, modelos e conexão
-✅ Variáveis sensíveis isoladas em .env
-✅ ORM SQLAlchemy (sem SQL hardcoded)
-✅ Compatibilidade com múltiplos bancos
-✅ Código versionável e modular
+## 🔒 Boas Práticas Aplicadas
+
+- ✅ Separação clara entre lógica, modelos e conexão
+- ✅ Variáveis sensíveis isoladas em `.env`
+- ✅ ORM SQLAlchemy (sem SQL hardcoded)
+- ✅ Compatibilidade com múltiplos bancos
+- ✅ Código versionável e modular
 
 ---
 
-##💼 Valor para o Portfólio
+## 💼 Valor para o Portfólio
+
 Este projeto demonstra competências práticas em:
 
-Integração de sistemas Python ↔ Bancos de dados relacionais
+- Integração de sistemas Python ↔ Bancos de dados relacionais
+- ORM e manipulação de dados com SQLAlchemy
+- Deploy local com Docker
+- Conexão a instâncias em nuvem (AWS / GCP)
+- Segurança e versionamento profissional
 
-ORM e manipulação de dados com SQLAlchemy
-
-Deploy local com Docker
-
-Conexão a instâncias em nuvem (AWS / GCP)
-
-Segurança e versionamento profissional
-
-Ideal para vagas de Desenvolvedor Backend, Analista de Dados e Engenheiro de Software.
+Ideal para vagas de **Desenvolvedor Backend**, **Analista de Dados** e **Engenheiro de Software**.
 
 ---
 
 ## 👨‍💻 Autor
-Rui Francisco de Paula Inácio Diniz
-📍 Taubaté - SP
-📧 rui.pdiniz@gmail.com
-💼 LinkedIn
-💻 GitHub
+
+**Rui Francisco de Paula Inácio Diniz**
+
+- 📍 Taubaté - SP
+- 📧 rui.pdiniz@gmail.com
+- 💼 [LinkedIn](https://linkedin.com)
+- 💻 [GitHub](https://github.com/Dev-RuiDiniz)
 
 ---
 
-##🧾 Licença
+## 🧾 Licença
+
 Este projeto é de uso livre para fins educacionais e demonstrações técnicas.
+
 © 2025 — Desenvolvido por Rui Diniz.
