@@ -62,8 +62,8 @@ db-connection-project/
 
 ## 🐳 Configuração Local com Docker
 
-### 1️⃣ Suba os containers MySQL e PostgreSQL:
-```bash
+## 1️⃣ Suba os containers MySQL e PostgreSQL:
+
 docker compose up -d
 Verifique se estão ativos:
 
