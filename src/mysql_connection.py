@@ -9,7 +9,3 @@ def get_mysql_connection(env_key="MYSQL_LOCAL_URL"):
     engine = create_engine(url)
     return engine.connect()
 
-def get_postgres_connection(env_key="POSTGRES_LOCAL_URL"):
-    url = os.getenv(env_key)
-    engine = create_engine(url)
-    return engine.connect()
