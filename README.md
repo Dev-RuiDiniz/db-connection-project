@@ -28,7 +28,7 @@ Criar uma base sólida de integração entre **Python e bancos de dados relacion
 
 ## 🧱 Estrutura do Projeto
 
-db-connection-project/
+'''db-connection-project/
 │
 ├── src/
 │ ├── main.py
@@ -42,7 +42,7 @@ db-connection-project/
 ├── .gitignore
 ├── docker-compose.yml
 ├── requirements.txt
-└── README.md
+└── README.md'''
 
 yaml
 Copiar código
