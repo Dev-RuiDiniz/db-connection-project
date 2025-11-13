@@ -1,7 +1,5 @@
-# Ignorar pastas de volume geradas pelo Docker para bancos de dados
+.env
+__pycache__/
 mysql_data/
 postgres_data/
-
-# Outros arquivos comuns do Docker
-.env
-build/
+.vscode/
